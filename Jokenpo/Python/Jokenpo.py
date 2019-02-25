@@ -1,36 +1,33 @@
-class JogoJokenpo:
+def jogar(jogador1, jogador2):
 
-    def __init__(self, player1, player2):
-        self.player1 = player1
-        self.player2 = player2
+    opcao = ('pedra', 'papel', 'tesoura')
 
-    def return_papel(self, pos_player1):
-        return self.player1[pos_player1]
+    empate = 'Empate'
+    jogador1ganha = 'Jogador 1 ganhou'
+    jogador2ganha = 'Jogador 2 ganhou'
 
-    def return_resultado(self, pos_player1, pos_player2):
-        result = ''
-        if self.player1[pos_player1] in self.player1 and self.player2[pos_player2] in self.player2:
-            if pos_player1 == 0:
-                if pos_player2 == 0:
-                    result = 'EMPATE'
-                elif pos_player2 == 1:
-                    result = 'player2 ganhou'
-                else:
-                    result = 'player1 ganhou'
-            elif pos_player1 == 1:
-                if pos_player2 == 0:
-                    result = 'player1 ganhou'
-                elif pos_player2 == 1:
-                    result = 'EMPATE'
-                else:
-                    result = 'player2 ganhou'
-            elif pos_player1 == 2:
-                if pos_player2 == 0:
-                    result = 'player2 ganhou'
-                elif pos_player2 == 1:
-                    result = 'player1 ganhou'
-                else:
-                    result = 'EMPATE'
-        else:
-            result = 'opção inválida'
-        return result
+    try:
+        jogador1 = opcao[jogador1]
+        jogador2 = opcao[jogador2]
+    except IndexError:
+        return 'opção invalida'
+
+    else:
+        if jogador1 == jogador2:
+            return empate
+
+        if jogador1 == 'pedra':
+            if jogador2 == 'tesoura':
+                return jogador1ganha
+            return jogador2ganha
+
+        elif jogador1 == 'papel':
+            if jogador2 == 'pedra':
+                return jogador1ganha
+            return jogador2ganha
+
+        elif jogador1 == 'tesoura':
+            if jogador2 == 'papel':
+                return jogador1ganha
+            return jogador2ganha
+

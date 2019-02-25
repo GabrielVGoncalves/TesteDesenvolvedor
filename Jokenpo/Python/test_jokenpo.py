@@ -1,33 +1,23 @@
-import unittest
+from unittest import TestCase
+from Jokenpo import jogar
 
 
-from Jokenpo import JogoJokenpo
-
-
-class JokenpoTest(unittest.TestCase):
-
-    def setUp(self):
-        player1 = ('pedra', 'papel', 'tesoura')
-        player2 = ('pedra', 'papel', 'tesoura')
-        self.Jogo = JogoJokenpo(player1, player2)
-
-    def tearDown(self):
-        pass
+class TestesJokenpo(TestCase):
 
     def test_retorna_empate(self):
-        self.assertEqual('EMPATE', self.Jogo.return_resultado(0, 0))
-        self.assertEqual('EMPATE', self.Jogo.return_resultado(1, 1))
-        self.assertEqual('EMPATE', self.Jogo.return_resultado(2, 2))
+        self.assertEqual("Empate", jogar(0, 0))
+        self.assertEqual("Empate", jogar(1, 1))
+        self.assertEqual("Empate", jogar(2, 2))
 
-    def test_player1_ganha(self):
-        self.assertEqual('player1 ganhou', self.Jogo.return_resultado(0, 2))
-        self.assertEqual('player1 ganhou', self.Jogo.return_resultado(1, 0))
-        self.assertEqual('player1 ganhou', self.Jogo.return_resultado(2, 1))
+    def teste_jogador1_ganha(self):
+        self.assertEqual("Jogador 1 ganhou", jogar(0, 2))
+        self.assertEqual("Jogador 1 ganhou", jogar(1, 0))
+        self.assertEqual("Jogador 1 ganhou", jogar(2, 1))
 
-    def test_player2_ganha(self):
-        self.assertEqual('player2 ganhou', self.Jogo.return_resultado(2, 0))
-        self.assertEqual('player2 ganhou', self.Jogo.return_resultado(0, 1))
-        self.assertEqual('player2 ganhou', self.Jogo.return_resultado(1, 2))
+    def teste_jogador2_ganha(self):
+        self.assertEqual("Jogador 2 ganhou", jogar(2, 0))
+        self.assertEqual("Jogador 2 ganhou", jogar(0, 1))
+        self.assertEqual("Jogador 2 ganhou", jogar(1, 2))
 
-    def test_opcao_invalida(self):
-        self.assertRaises('opção inválida')
+    def teste_opcao_invalida(self):
+        self.assertEqual("opção invalida", jogar(1, 4))
